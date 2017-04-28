@@ -26,6 +26,10 @@ const stakeholdersSchema = new SimpleSchema({
             "Other"
         ]
     },
+    riskiestAssumptions: {
+        type: [String],
+        optional: true
+    },
     description: {
         type: String
     },
