@@ -26,10 +26,6 @@ const stakeholdersSchema = new SimpleSchema({
             "Other"
         ]
     },
-    riskiestAssumptions: {
-        type: [String],
-        optional: true
-    },
     description: {
         type: String
     },
@@ -61,3 +57,5 @@ const stakeholdersSchema = new SimpleSchema({
 });
 
 Stakeholders.attachSchema(stakeholdersSchema);
+
+Stakeholders.attachBehaviour("timestampable");

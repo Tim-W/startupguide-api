@@ -65,3 +65,5 @@ const ideasSchema = new SimpleSchema({
 });
 
 Ideas.attachSchema(ideasSchema);
+
+Ideas.attachBehaviour("timestampable");

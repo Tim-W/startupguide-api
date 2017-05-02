@@ -26,3 +26,5 @@ const companiesSchema = new SimpleSchema({
 });
 
 Companies.attachSchema(companiesSchema);
+
+Companies.attachBehaviour("timestampable");
