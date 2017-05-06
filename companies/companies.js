@@ -18,13 +18,7 @@ Companies.allow({
 const companiesSchema = new SimpleSchema({
     title: {
         type: String
-    },
-    members: {
-        type: [SimpleSchema.RegEx.Id],
-        optional: true
     }
 });
 
 Companies.attachSchema(companiesSchema);
-
-Companies.attachBehaviour("timestampable");
