@@ -61,6 +61,10 @@ const ideasSchema = new SimpleSchema({
     },
     "assumptions.$.type": {
         type: Number
+    },
+    hasBlueprint: {
+        type: Boolean,
+        defaultValue: true
     }
 });
 
