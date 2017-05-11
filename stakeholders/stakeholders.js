@@ -44,8 +44,14 @@ const stakeholdersSchema = new SimpleSchema({
         type: String
     },
     valueAssumptions: {
-        type: [String],
+        type: [Object],
         optional: true
+    },
+    "valueAssumptions.$.body": {
+        type: String
+    },
+    "valueAssumptions.$.isRisky": {
+        type: Boolean
     },
     solution: {
         type: String
