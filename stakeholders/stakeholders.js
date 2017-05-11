@@ -1,5 +1,6 @@
 import {Mongo} from "meteor/mongo";
 import {SimpleSchema} from "meteor/aldeed:simple-schema";
+import AssumptionsSchema from "../assumptions/Assumptions";
 
 Stakeholders = new Mongo.Collection('stakeholders');
 
@@ -29,37 +30,31 @@ const stakeholdersSchema = new SimpleSchema({
     description: {
         type: String
     },
-    descriptionAssumptions: {
-        type: [String],
-        optional: true
-    },
     problem: {
         type: String
-    },
-    problemAssumptions: {
-        type: [String],
-        optional: true
     },
     value: {
         type: String
     },
-    valueAssumptions: {
-        type: [Object],
-        optional: true
-    },
-    "valueAssumptions.$.body": {
-        type: String
-    },
-    "valueAssumptions.$.isRisky": {
-        type: Boolean
-    },
     solution: {
         type: String
     },
-    solutionAssumptions: {
-        type: [String],
+    descriptionAssumptions: {
+        type: [SimpleSchema.RegEx.Id],
         optional: true
     },
+    problemAssumptions: {
+        type: [SimpleSchema.RegEx.Id],
+        optional: true
+    },
+    solutionAssumptions: {
+        type: [SimpleSchema.RegEx.Id],
+        optional: true
+    },
+    valueAssumptions: {
+        type: [SimpleSchema.RegEx.Id],
+        optional: true
+    }
 });
 
 Stakeholders.attachSchema(stakeholdersSchema);
