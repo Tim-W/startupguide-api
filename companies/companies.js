@@ -4,14 +4,14 @@ import {SimpleSchema} from "meteor/aldeed:simple-schema";
 Companies = new Mongo.Collection('companies');
 
 Companies.allow({
-    insert() {
-        return true;
+    insert(userId, doc) {
+        return doc.createdBy === userId;
     },
-    update() {
-        return true;
+    update(userId, doc) {
+        return doc.createdBy === userId;
     },
-    remove() {
-        return true;
+    remove(userId, doc) {
+        return doc.createdBy === userId;
     }
 });
 
