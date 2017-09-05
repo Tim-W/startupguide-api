@@ -27,18 +27,6 @@ const experimentsSchema = new SimpleSchema({
     },
     learn: {
         type: String
-    },
-    isActive: {
-        type: Boolean,
-        defaultValue: true
-    },
-    learnings: {
-        type: [String],
-        optional: true
-    },
-    isValidated: {
-        type: Boolean,
-        defaultValue: false
     }
 });
 
