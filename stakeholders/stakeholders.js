@@ -5,14 +5,14 @@ import AssumptionsSchema from "../assumptions/Assumptions";
 Stakeholders = new Mongo.Collection('stakeholders');
 
 Stakeholders.allow({
-    insert() {
-        return true;
+    insert(userId, doc) {
+        return doc.createdBy === userId;
     },
-    update() {
-        return true;
+    update(userId, doc) {
+        return doc.createdBy === userId;
     },
-    remove() {
-        return true;
+    remove(userId, doc) {
+        return doc.createdBy === userId;
     }
 });
 

@@ -1,29 +1,24 @@
 import {Mongo} from "meteor/mongo";
 import {SimpleSchema} from "meteor/aldeed:simple-schema";
 
-Assumptions = new Mongo.Collection('assumptions');
+Companies = new Mongo.Collection('companies');
 
-Assumptions.allow({
-    insert() {
-        return true;
+Companies.allow({
+    insert(userId, doc) {
+        return doc.createdBy === userId;
     },
-    update() {
-        return true;
+    update(userId, doc) {
+        return doc.createdBy === userId;
     },
-    remove() {
-        return true;
+    remove(userId, doc) {
+        return doc.createdBy === userId;
     }
 });
 
-AssumptionsSchema = new SimpleSchema({
-    body: {
+const companiesSchema = new SimpleSchema({
+    title: {
         type: String
-    },
-    isRisky: {
-        type: Boolean
     }
 });
 
-Assumptions.attachBehaviour("timestampable");
-
-Assumptions.attachSchema(AssumptionsSchema);
+Companies.attachSchema(companiesSchema);
