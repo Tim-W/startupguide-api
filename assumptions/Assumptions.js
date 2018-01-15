@@ -39,5 +39,3 @@ AssumptionsSchema = new SimpleSchema({
 Assumptions.attachBehaviour("timestampable");
 
 Assumptions.attachSchema(AssumptionsSchema);
-
-export default AssumptionsSchema;
