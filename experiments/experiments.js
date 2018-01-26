@@ -2,13 +2,13 @@ Experiments = new Mongo.Collection('experiments');
 
 Experiments.allow({
     insert(userId, doc) {
-        return doc.createdBy === userId;
+        return true;
     },
     update(userId, doc) {
-        return doc.createdBy === userId;
+        return true;
     },
     remove(userId, doc) {
-        return doc.createdBy === userId;
+        return true;
     }
 });
 
@@ -27,6 +27,18 @@ const experimentsSchema = new SimpleSchema({
     },
     learn: {
         type: String
+    },
+    isActive: {
+        type: Boolean,
+        defaultValue: true
+    },
+    learnings: {
+        type: [String],
+        optional: true
+    },
+    isValidated: {
+        type: Boolean,
+        defaultValue: false
     }
 });
 

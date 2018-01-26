@@ -4,11 +4,14 @@ import {SimpleSchema} from "meteor/aldeed:simple-schema";
 Ideas = new Mongo.Collection('ideas');
 
 Ideas.allow({
-    insert(userId, doc) {
-        return doc.createdBy === userId;
+    insert() {
+        return true;
     },
     update(userId, doc) {
-        return doc.createdBy === userId;
+        if (doc.createdBy === userId) {
+            return true;
+        }
+        return _.contains(doc.contributors, userId);
     },
     remove(userId, doc) {
         return doc.createdBy === userId;
@@ -19,8 +22,28 @@ const ideasSchema = new SimpleSchema({
     title: {
         type: String
     },
+    smartAssumptions: {
+        type: Boolean,
+        defaultValue: false
+    },
     owner: {
         type: String
+    },
+    seenBlueprint: {
+        type: Boolean,
+        defaultValue: false
+    },
+    seenAssumptions: {
+        type: Boolean,
+        defaultValue: false
+    },
+    seenRiskiest: {
+        type: Boolean,
+        defaultValue: false
+    },
+    seenExperiments: {
+        type: Boolean,
+        defaultValue: false
     },
     mainFocus: {
         type: String
@@ -65,6 +88,14 @@ const ideasSchema = new SimpleSchema({
     hasBlueprint: {
         type: Boolean,
         defaultValue: true
+    },
+    usersViewOnly: {
+        type: [SimpleSchema.RegEx.Id],
+        defaultValue: []
+    },
+    contributors: {
+        type: [SimpleSchema.RegEx.Id],
+        defaultValue: []
     }
 });
 

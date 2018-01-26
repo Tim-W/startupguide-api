@@ -4,14 +4,14 @@ import {SimpleSchema} from "meteor/aldeed:simple-schema";
 Assumptions = new Mongo.Collection('assumptions');
 
 Assumptions.allow({
-    insert(userId, doc) {
-        return doc.createdBy === userId;
+    insert() {
+        return true;
     },
-    update(userId, doc) {
-        return doc.createdBy === userId;
+    update() {
+        return true;
     },
-    remove(userId, doc) {
-        return doc.createdBy === userId;
+    remove() {
+        return true;
     }
 });
 
@@ -33,6 +33,12 @@ AssumptionsSchema = new SimpleSchema({
     experiment: {
         type: SimpleSchema.RegEx.Id,
         optional: true
+    }
+});
+
+Assumptions.helpers({
+    smartScore() {
+        return  (this.smartProbability || 0) * (this.smartImpact || 0);
     }
 });
 

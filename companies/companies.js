@@ -4,8 +4,8 @@ import {SimpleSchema} from "meteor/aldeed:simple-schema";
 Companies = new Mongo.Collection('companies');
 
 Companies.allow({
-    insert(userId, doc) {
-        return doc.createdBy === userId;
+    insert() {
+        return true;
     },
     update(userId, doc) {
         return doc.createdBy === userId;
@@ -18,7 +18,13 @@ Companies.allow({
 const companiesSchema = new SimpleSchema({
     title: {
         type: String
+    },
+    hasDefaultIdea: {
+        type: Boolean,
+        defaultValue: false
     }
 });
 
 Companies.attachSchema(companiesSchema);
+
+export default Companies;

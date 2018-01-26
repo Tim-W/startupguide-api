@@ -5,14 +5,14 @@ import AssumptionsSchema from "../assumptions/Assumptions";
 Stakeholders = new Mongo.Collection('stakeholders');
 
 Stakeholders.allow({
-    insert(userId, doc) {
-        return doc.createdBy === userId;
+    insert() {
+        return true;
     },
-    update(userId, doc) {
-        return doc.createdBy === userId;
+    update() {
+        return true;
     },
-    remove(userId, doc) {
-        return doc.createdBy === userId;
+    remove() {
+        return true;
     }
 });
 
@@ -26,6 +26,9 @@ const stakeholdersSchema = new SimpleSchema({
             "Partner",
             "Other"
         ]
+    },
+    title: {
+        type: String
     },
     description: {
         type: String
